@@ -9,7 +9,7 @@ def filter_reviews_rating(df, threshold):
     :param threshold: float from 0 to 1
     :return: filtered reviews dataframe
     """
-    return df[df['ratings'] <= threshold]
+    return df[df['cleaned_ratings'] <= threshold]
 
 
 def sent_to_words(sentences):
