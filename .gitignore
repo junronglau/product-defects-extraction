@@ -1,4 +1,6 @@
 /data/
+/output/
 /.gitattributes
 /.idea
 /.DS_Store
+/notebooks/.ipynb_checkpoints
