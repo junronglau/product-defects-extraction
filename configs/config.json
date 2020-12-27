@@ -1,9 +1,16 @@
 {
+  "experiment": {
+    "api_key" : "GumcB0S2230qAD8whgeRPjGdL",
+    "project_name" : "product-defects-extraction",
+    "workspace" : "junronglau",
+    "experiment_name": "Baseline LDA Model [Labels generator]",
+    "model_name": "LDA Baseline"
+  },
   "labels_generator" : {
     "paths": {
-      "base_data_path" : "C:\\Users\\Admin\\Documents\\SchoolWork\\Y3S2\\FYP\\data\\base\\consolidated_products.csv",
-      "save_model_path": "data/uc3/labels_generator/topic_model.gensim",
-      "save_data_path": "data/uc3/labels_generator/generated_labels.csv"
+      "base_data_path" : "../data/base/consolidated_products.csv",
+      "save_model_path": "../data/uc3/labels_generator/topic_model.gensim",
+      "save_data_path": "../data/uc3/labels_generator/generated_labels.csv"
     },
     "model": {
       "iterations" : 10,
