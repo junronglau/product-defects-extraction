@@ -1,4 +1,6 @@
-/data/
+/data/uc3/
+/data/raw/
+/data/base/
 /output/
 /.gitattributes
 /.idea
