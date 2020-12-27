@@ -8,12 +8,8 @@ def get_args():
         '-c', '--config',
         dest='config',
         metavar='C',
-        default='configs/config.json',
+        default='../configs/config.json',
         help='The Configuration file')
-    argparser.add_argument(
-        '-d', '--dataset',
-        default='all',
-        help='Which dataset to generate [all, reviews, profiles]')
 
     args = argparser.parse_args()
     return args
