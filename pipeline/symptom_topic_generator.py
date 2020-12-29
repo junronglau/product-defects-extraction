@@ -3,9 +3,10 @@ Topic model to get symptoms categories
 Select relevant topics and their top n keywords
 Filter for these keywords to extract defects
 """
-
+from pathlib import Path
 import sys
-sys.path.append('../')
+path = str(Path(Path(__file__).parent.absolute()).parent.absolute())
+sys.path.insert(0, path)
 
 from comet_ml import Experiment
 
@@ -18,7 +19,7 @@ from utils.utils import get_args
 from utils.config import process_config
 
 
-def generate():
+def generate_topics():
     # capture the config path from the run arguments
     # then process the json configuration file
     try:
@@ -66,4 +67,4 @@ def generate():
 
 
 if __name__ == '__main__':
-    generate()
+    generate_topics()
