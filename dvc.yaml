@@ -1,0 +1,7 @@
+stages:
+  generate_symptom_topics:
+    cmd: python pipeline/symptom_topic_generator.py
+    deps:
+    - data/base/consolidated_products.csv
+    outs:
+    - data/uc3/labels_generator/topic_model.gensim
