@@ -5,9 +5,9 @@ generate_symptom_topics:
     md5: 5b3d820ee2da231c8bdf9a2632ad34f7
     size: 109549672
   - path: pipeline/symptom_topic_generator.py
-    md5: cdda99e200c4e95fbf77339aa0cce667
-    size: 2135
+    md5: 00b77ce89dcd72986fa2f106e320ed77
+    size: 2493
   outs:
-  - path: data/uc3/labels_generator/biterm_topic_model.pkl
-    md5: 4d0b38c971af8992b0ac4cbd5573221a
-    size: 2157460
+  - path: data/uc3/labels_generator/corex_topic_model.pkl
+    md5: 3b9485ea8887b0b10fff55e03353de56
+    size: 5484403
