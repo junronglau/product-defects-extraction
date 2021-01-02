@@ -11,9 +11,9 @@ sys.path.insert(0, path)
 from comet_ml import Experiment
 
 from dataloader.data_loader import DataLoader
-from preprocess.lda_preprocessor import LDAPreprocessor
-from models.lda_model import LDAModel
-from trainers.lda_trainer import LDATrainer
+from preprocess.glda_preprocessor import GldaPreprocessor
+from models.glda_model import GldaModel
+from trainers.glda_trainer import GldaTrainer
 
 from utils.utils import get_args
 from utils.config import process_config
@@ -44,22 +44,26 @@ def generate_topics():
     data = data_loader.get_data()
 
     print('Creating the Preprocessor...')
-    preprocessor = LDAPreprocessor(config, data)
-    preprocessor.preprocess_data()
+    preprocessor = GldaPreprocessor(data, config)
+    preprocessor.prepare_data()
 
     print('Creating and training the Model...')
-    model = LDAModel(config, preprocessor.get_data(), preprocessor.get_dictionary())
-    trainer = LDATrainer(config, model)
+    model = GldaModel(config, preprocessor)
+    trainer = GldaTrainer(model, preprocessor.get_data())
+    trainer.train()
 
     print('Evaluating the model...')
-    coherence_score = trainer.evaluate()
+    coherence_lst, avg_coherence = trainer.evaluate(preprocessor.get_data(), preprocessor.get_corpus())
     trainer.generate_topics()
+    print("Coherence score: {score_lst}, \n Avg coherence score: {avg_score}"
+          .format(score_lst=coherence_lst,
+                  avg_score=avg_coherence))
 
     print('Saving the trained model...')
     model.save()
 
     # Log the rest of the experiment
-    metrics = {"coherence": coherence_score}
+    metrics = {"coherence": avg_coherence}
     experiment.log_metrics(metrics)
 
     experiment.log_model(name=config.experiment.model_name,
