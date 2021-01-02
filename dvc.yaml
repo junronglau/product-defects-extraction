@@ -5,4 +5,4 @@ stages:
     - data/base/consolidated_products.csv
     - pipeline/symptom_topic_generator.py
     outs:
-    - data/uc3/labels_generator/glda_topic_model.pkl
+    - data/uc3/labels_generator/biterm_topic_model.pkl
