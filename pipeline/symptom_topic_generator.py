@@ -11,17 +11,16 @@ sys.path.insert(0, path)
 from comet_ml import Experiment
 
 from dataloader.data_loader import DataLoader
-from preprocess.glda_preprocessor import GldaPreprocessor
-from models.glda_model import GldaModel
-from trainers.glda_trainer import GldaTrainer
+from preprocess.corex_preprocessor import CorexPreprocessor
+from models.corex_model import CorexModel
+from trainers.corex_trainer import CorexTrainer
 
 from utils.utils import get_args
 from utils.config import process_config
 
 
 def generate_topics():
-    # capture the config path from the run arguments
-    # then process the json configuration file
+    # capture the config path from the run arguments then process the json configuration file
     try:
         args = get_args()
         config = process_config(args.config)
@@ -44,18 +43,18 @@ def generate_topics():
     data = data_loader.get_data()
 
     print('Creating the Preprocessor...')
-    preprocessor = GldaPreprocessor(data, config)
+    preprocessor = CorexPreprocessor(data, config)
     preprocessor.prepare_data()
 
     print('Creating and training the Model...')
-    model = GldaModel(config, preprocessor)
-    trainer = GldaTrainer(model, preprocessor.get_data())
+    model = CorexModel(config, preprocessor)
+    trainer = CorexTrainer(model, preprocessor.get_data())
     trainer.train()
 
     print('Evaluating the model...')
     coherence_lst, avg_coherence = trainer.evaluate(preprocessor.get_data(), preprocessor.get_corpus())
     trainer.generate_topics()
-    print("Coherence score: {score_lst}, \n Avg coherence score: {avg_score}"
+    print("Coherence score: {score_lst} \nAvg coherence score: {avg_score}"
           .format(score_lst=coherence_lst,
                   avg_score=avg_coherence))
 
