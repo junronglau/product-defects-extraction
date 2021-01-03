@@ -3,19 +3,24 @@
     "api_key" : "GumcB0S2230qAD8whgeRPjGdL",
     "project_name" : "product-defects-extraction",
     "workspace" : "junronglau",
-    "experiment_name": "[Labels generator] Baseline LDA Model",
-    "model_name": "LDA Baseline"
+    "experiment_name": "[Labels generator] Corex topic modelling - Method 3 - Added bigrams",
+    "model_name": "Corex - Final"
   },
   "labels_generator" : {
     "paths": {
       "base_data_path" : "data/base/consolidated_products.csv",
-      "save_model_path": "data/uc3/labels_generator/topic_model.gensim",
-      "save_data_path": "data/uc3/labels_generator/generated_labels.csv"
+      "save_model_path": "data/uc3/labels_generator/corex_topic_model.pkl",
+      "save_data_path": "data/uc3/labels_generator/generated_labels.csv",
+      "seeded_topics_path" : "data/uc3/labels_generator/topic_seed.json",
+      "stop_words_path" : "data/uc3/labels_generator/stop_words.txt"
     },
     "model": {
       "iterations" : 10,
       "num_topics" : 10,
       "random_state" : 0
+    },
+    "preprocess": {
+      "ngrams": "bigram"
     }
   },
   "defects_classifier": {
