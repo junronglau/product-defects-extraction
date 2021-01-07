@@ -6,3 +6,10 @@ stages:
     - pipeline/symptom_topic_generator.py
     outs:
     - data/uc3/labels_generator/corex_topic_model.pkl
+  generate_labels:
+    cmd: python pipeline/labels_generator.py
+    deps:
+    - data/uc3/labels_generator/corex_topic_model.pkl
+    - pipeline/labels_generator.py
+    outs:
+    - data/uc3/labels_generator/generated_labels.csv

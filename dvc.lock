@@ -11,3 +11,16 @@ generate_symptom_topics:
   - path: data/uc3/labels_generator/corex_topic_model.pkl
     md5: d92abc574803f4b7ab68f2cea8430516
     size: 3344441
+generate_labels:
+  cmd: python pipeline/labels_generator.py
+  deps:
+  - path: data/uc3/labels_generator/corex_topic_model.pkl
+    md5: d92abc574803f4b7ab68f2cea8430516
+    size: 3344441
+  - path: pipeline/labels_generator.py
+    md5: 64d7da113924accd5c5e452017122d39
+    size: 1555
+  outs:
+  - path: data/uc3/labels_generator/generated_labels.csv
+    md5: dda6718a1bbb53e36be9ddc305a73cc4
+    size: 5245241
