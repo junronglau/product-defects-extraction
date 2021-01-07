@@ -53,3 +53,6 @@ class CorexPreprocessor(BasePreprocessor):
 
     def get_corpus(self):
         return np.array(self.df['cleaned_text'].str.split())
+
+    def get_raw_corpus(self):
+        return self.df
