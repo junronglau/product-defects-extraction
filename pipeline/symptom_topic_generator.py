@@ -10,7 +10,7 @@ sys.path.insert(0, path)
 
 from comet_ml import Experiment
 
-from dataloader.data_loader import DataLoader
+from dataloader.lg_data_loader import DataLoader
 from preprocess.corex_preprocessor import CorexPreprocessor
 from models.corex_model import CorexModel
 from trainers.corex_trainer import CorexTrainer
