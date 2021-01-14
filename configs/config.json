@@ -21,9 +21,19 @@
     },
     "preprocess": {
       "ngrams": "bigram"
+    },
+    "evaluate": {
+      "extract_topics": [0, 1, 2, 5, 8],
+      "extraction_quantile": 0.9
     }
   },
   "defects_classifier": {
+    "paths": {
+      "test_data_path": "data/uc3/defects_classifier/test_data.csv"
+    },
+    "evaluate" : {
+      "protocol" : 1
+    }
   },
   "defects_summarizer": {
   }
