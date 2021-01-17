@@ -24,3 +24,16 @@ generate_labels:
   - path: data/uc3/labels_generator/generated_labels.csv
     md5: dda6718a1bbb53e36be9ddc305a73cc4
     size: 5245241
+defects_classification:
+  cmd: python pipeline/defects_classifier.py
+  deps:
+  - path: data/uc3/labels_generator/generated_labels.csv
+    md5: dda6718a1bbb53e36be9ddc305a73cc4
+    size: 5245241
+  - path: pipeline/defects_classifier.py
+    md5: cf3b9c2548a886dd0c0fb55d0917020a
+    size: 2533
+  outs:
+  - path: data/uc3/defects_classifier/svm_classifier.pkl
+    md5: 77b1da6160ee1cd4e3778e6df42b7d40
+    size: 1070452

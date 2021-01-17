@@ -13,3 +13,10 @@ stages:
     - pipeline/labels_generator.py
     outs:
     - data/uc3/labels_generator/generated_labels.csv
+  defects_classification:
+    cmd: python pipeline/defects_classifier.py
+    deps:
+    - data/uc3/labels_generator/generated_labels.csv
+    - pipeline/defects_classifier.py
+    outs:
+    - data/uc3/defects_classifier/svm_classifier.pkl
