@@ -12,5 +12,3 @@ class DataLoader:
 
     def get_data(self):
         return self.df
-
-    # Split data here
