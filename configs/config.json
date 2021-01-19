@@ -3,8 +3,8 @@
     "api_key" : "GumcB0S2230qAD8whgeRPjGdL",
     "project_name" : "product-defects-extraction",
     "workspace" : "junronglau",
-    "experiment_name": "[Labels generator] Corex topic modelling - Method 3 - Added bigrams",
-    "model_name": "Corex - Final"
+    "experiment_name": "[Defects classifier] SVM - Baseline - Initial baseline model",
+    "model_name": "SVM - Baseline"
   },
   "labels_generator" : {
     "paths": {
@@ -29,10 +29,23 @@
   },
   "defects_classifier": {
     "paths": {
-      "test_data_path": "data/uc3/defects_classifier/test_data.csv"
+      "test_data_path": "data/uc3/defects_classifier/test_data.csv",
+      "save_model_path": "data/uc3/defects_classifier/pubagging_classifier.pkl"
+    },
+    "model": {
+      "C" : 10,
+      "kernel" : "linear"
     },
     "evaluate" : {
-      "protocol" : 1
+      "protocol" : {
+        "ratings" : {
+          "1-star" : 1,
+          "2-star" : 2,
+          "3-star" : 3,
+          "4-star" : 4,
+          "5-star" : 5
+        }
+      }
     }
   },
   "defects_summarizer": {
