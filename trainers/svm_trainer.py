@@ -16,7 +16,8 @@ class SvmTrainer:
         test_labels = data['labels']
         predictions = self.model.predict(test_features)
         acc = accuracy_score(predictions, test_labels)
-        precision, recall, _, _ = precision_recall_fscore_support(predictions, test_labels, average='binary')
+
+        precision, recall, _, _ = precision_recall_fscore_support(predictions.astype(int), test_labels.astype(int), average='binary')
         return {"accuracy": acc, "precision": precision, "recall": recall}
 
     def evaluate_protocol(self, protocol_dct, **data):

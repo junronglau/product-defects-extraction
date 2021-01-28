@@ -8,7 +8,10 @@ class BasePreprocessor:
         self.train_labels = train_df['has_defect']
         self.test_labels = test_df['has_defect']
         self.test_protocol = test_df['protocol']
+        self.train_text = train_df['cleaned_text']
+        self.test_text = test_df['cleaned_text']
 
     def preprocess_data(self):
-        self.train_df['cleaned_text'] = replace_null(self.train_df['cleaned_text'], '')
-        self.test_df['cleaned_text'] = replace_null(self.test_df['cleaned_text'], '')
+        self.train_text = replace_null(self.train_text, '')
+        self.test_text = replace_null(self.test_text, '')
+
