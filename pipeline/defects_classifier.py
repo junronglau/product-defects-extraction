@@ -4,10 +4,10 @@ import sys
 path = str(Path(Path(__file__).parent.absolute()).parent.absolute())
 sys.path.insert(0, path)
 
-from comet_ml import Experiment
+# from comet_ml import Experiment
 from dataloader.dc_data_loader import DataLoader
 from preprocess.twostep_preprocessor import TwoStepPreprocessor
-from models.elkanoto_model import ElkanotoModel
+from models.svm_model import SvmModel
 from trainers.svm_trainer import SvmTrainer
 
 from utils.utils import get_args
@@ -43,7 +43,7 @@ def defects_classifier():
     test_data = preprocessor.get_test_data()
 
     print('Loading and evaluating the Model...')
-    model = ElkanotoModel(config, load=False)
+    model = SvmModel(config, load=False)
     trainer = SvmTrainer(model, **train_data)
     trainer.train()
     overall_scores = trainer.evaluate_all(**test_data)

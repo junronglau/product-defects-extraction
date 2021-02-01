@@ -26,7 +26,7 @@ class DataLoader:
         pos_train_df = self.load_pos_training_data()
         unlabelled_train_df = self.load_unlabelled_training_data()
         train_df = pd.concat([pos_train_df, unlabelled_train_df])
-        train_df = train_df.sample(frac=1).reset_index(drop=True)[:2000]
+        train_df = train_df.sample(frac=1).reset_index(drop=True)[:6000]
         return train_df
 
     def load_pos_training_data(self):
