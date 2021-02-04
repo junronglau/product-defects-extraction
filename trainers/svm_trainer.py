@@ -3,15 +3,22 @@ from sklearn.metrics import precision_recall_fscore_support
 
 
 class SvmTrainer:
-    def __init__(self, model, **data):
+    def __init__(self, model, preprocessor):
         self.model = model.model
-        self.labelled_features = data['labelled_features']
-        self.unlabelled_features = data['unlabelled_features']
-        self.train_labels = data['labels']
+        self.preprocessor = preprocessor
 
-    def train(self):
-        self.model.fit(self.labelled_features, self.train_labels)
-        # fit on unlabelled features and get
+    def train(self, mode="normal"):
+        if mode == "2step":
+            iter = 0
+            last_iter = False
+            while self.preprocessor.continue_training:
+                if iter == 3:
+                    last_iter = True
+                    self.preprocessor.continue_training = False
+                self.preprocessor.generate_split_data(last_iter)
+                iter += 1
+        data = self.preprocessor.get_train_data()
+        self.model.fit(data['labelled_features'], data['labels'])
 
     def evaluate_all(self, **data):
         test_features = data['features']
