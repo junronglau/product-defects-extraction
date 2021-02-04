@@ -3,8 +3,8 @@
     "api_key" : "GumcB0S2230qAD8whgeRPjGdL",
     "project_name" : "product-defects-extraction",
     "workspace" : "junronglau",
-    "experiment_name": "[Defects classifier] SVM - PU Elkanoto Method",
-    "model_name": "SVM - PU Elkanoto"
+    "experiment_name": "[Defects classifier] SVM - 2-step Method (Iterative, over-sampled)",
+    "model_name": "SVM - 2-Step iterative"
   },
   "labels_generator" : {
     "paths": {
@@ -30,7 +30,7 @@
   "defects_classifier": {
     "paths": {
       "test_data_path": "data/uc3/defects_classifier/test_data.csv",
-      "save_model_path": "data/uc3/defects_classifier/puelkanoto_classifier.pkl"
+      "save_model_path": "data/uc3/defects_classifier/2step_classifier.pkl"
     },
     "model": {
       "C" : 10,

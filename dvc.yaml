@@ -19,4 +19,4 @@ stages:
     - data/uc3/labels_generator/generated_labels.csv
     - pipeline/defects_classifier.py
     outs:
-    - data/uc3/defects_classifier/puelkanoto_classifier.pkl
+    - data/uc3/defects_classifier/2step_classifier.pkl

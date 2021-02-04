@@ -31,9 +31,9 @@ defects_classification:
     md5: dda6718a1bbb53e36be9ddc305a73cc4
     size: 5245241
   - path: pipeline/defects_classifier.py
-    md5: f0adaabc23976c736711f61a097f6ceb
-    size: 2548
+    md5: c111668f92d54fae4c1476d386709d03
+    size: 2509
   outs:
-  - path: data/uc3/defects_classifier/puelkanoto_classifier.pkl
-    md5: 8ac3dff8456989e3567712c325bc2c7d
-    size: 3047357
+  - path: data/uc3/defects_classifier/2step_classifier.pkl
+    md5: cf7fe5cd717a3cfe2d0805d81b6abf82
+    size: 3455950
