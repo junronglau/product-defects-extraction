@@ -42,3 +42,8 @@ class SvmTrainer:
             precision, recall, _, _ = precision_recall_fscore_support(predictions, proto_labels, average='binary')
             eval_dct[proto_name] = {"accuracy": acc, "precision": precision, "recall": recall}
         return eval_dct
+
+    def generate_predictions(self, **data):
+        test_features = data['features']
+        predictions = self.model.predict(test_features)
+        return predictions
