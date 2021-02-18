@@ -30,7 +30,8 @@
   "defects_classifier": {
     "paths": {
       "test_data_path": "data/uc3/defects_classifier/test_data.csv",
-      "save_model_path": "data/uc3/defects_classifier/2step_classifier.pkl"
+      "save_model_path": "data/uc3/defects_classifier/2step_classifier.pkl",
+      "save_data_path": "data/uc3/defects_classifier/generated_defects.csv"
     },
     "model": {
       "C" : 10,
