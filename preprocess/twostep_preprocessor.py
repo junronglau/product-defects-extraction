@@ -25,12 +25,13 @@ class TwoStepPreprocessor(BasePreprocessor):
         self.remaining_pos = None
         self.continue_training = True
 
-    def prepare_data(self):
+    def prepare_data(self, evaluate=False):
         self.preprocess_data()
         self.vectorizer.fit(self.train_text)  # Only fit on train data
         self.train_features = pd.DataFrame(self.vectorizer.transform(self.train_text).toarray())
         self.test_features = pd.DataFrame(self.vectorizer.transform(self.test_text).toarray())
-        self.generate_split_data()
+        if not evaluate:
+            self.generate_split_data()
 
     def generate_pseudo_neg(self, threshold):
         """
@@ -130,3 +131,6 @@ class TwoStepPreprocessor(BasePreprocessor):
         return {"features": self.test_features,
                 "labels": self.test_labels,
                 "protocol": self.test_protocol}
+
+    def get_all_data(self):
+        return {"features": self.train_features}
