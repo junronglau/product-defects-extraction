@@ -1,5 +1,7 @@
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import precision_recall_curve
+from matplotlib import pyplot
 
 
 class SvmTrainer:
@@ -26,6 +28,16 @@ class SvmTrainer:
         predictions = self.model.predict(test_features)
         acc = accuracy_score(predictions, test_labels)
         precision, recall, _, _ = precision_recall_fscore_support(predictions.astype(int), test_labels.astype(int), average='binary')
+
+        precision_lst, recall_lst, thresholds = precision_recall_curve(test_labels.astype(int), predictions.astype(int))
+        pyplot.plot(recall_lst, precision_lst, marker='.', label='Logistic')
+        pyplot.xlabel('Recall')
+        pyplot.ylabel('Precision')
+        pyplot.show()
+        print(precision_lst)
+        print(recall_lst)
+        print(thresholds)
+
         return {"accuracy": acc, "precision": precision, "recall": recall}
 
     def evaluate_protocol(self, protocol_dct, **data):
