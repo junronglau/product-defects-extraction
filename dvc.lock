@@ -2,28 +2,28 @@ generate_symptom_topics:
   cmd: python pipeline/symptom_topic_generator.py
   deps:
   - path: data/base/consolidated_products.csv
-    md5: 5b3d820ee2da231c8bdf9a2632ad34f7
-    size: 109549672
+    md5: cc929538b87bfa31fdb37b83f69b4492
+    size: 109276595
   - path: pipeline/symptom_topic_generator.py
-    md5: 61c482a9b5527bdf292de034acb123d7
-    size: 2486
+    md5: cc8c60e06fe55334bfd00059a653f208
+    size: 2489
   outs:
   - path: data/uc3/labels_generator/corex_topic_model.pkl
-    md5: d92abc574803f4b7ab68f2cea8430516
-    size: 3344441
+    md5: 8cc187f69b04d6b30331c83e1c193718
+    size: 3343399
 generate_labels:
   cmd: python pipeline/labels_generator.py
   deps:
   - path: data/uc3/labels_generator/corex_topic_model.pkl
-    md5: d92abc574803f4b7ab68f2cea8430516
-    size: 3344441
+    md5: 8cc187f69b04d6b30331c83e1c193718
+    size: 3343399
   - path: pipeline/labels_generator.py
-    md5: 64d7da113924accd5c5e452017122d39
-    size: 1555
+    md5: 79787540f2afa96ac5b6861600377288
+    size: 1558
   outs:
   - path: data/uc3/labels_generator/generated_labels.csv
-    md5: dda6718a1bbb53e36be9ddc305a73cc4
-    size: 5245241
+    md5: 5b04af8f6dc130adafd541abd0cd9371
+    size: 4830842
 defects_classification:
   cmd: python pipeline/defects_classifier.py
   deps:
