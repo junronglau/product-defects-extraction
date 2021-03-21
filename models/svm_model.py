@@ -8,7 +8,8 @@ class SvmModel:
         if load:
             self.model = pickle.load(open(self.model_path, "rb"))
         else:
-            self.model = svm.SVC(C=1.0, kernel='linear')
+            self.model = svm.SVC(C=0.1, kernel='linear', probability=True)
+
 
     def save(self):
         with open(self.model_path, 'wb') as output:

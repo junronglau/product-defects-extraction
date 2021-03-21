@@ -45,7 +45,9 @@ class TwoStepPreprocessor(BasePreprocessor):
         senti_scores = [analyser.polarity_scores(sentence)['pos'] for sentence in pseudo_neg['cleaned_text'].fillna("")]
         pseudo_neg.loc[:, 'senti_scores'] = senti_scores
         pseudo_neg = pseudo_neg.sort_values(by=['senti_scores'], ascending=False)
+        print(pseudo_neg[['comment','senti_scores']][pseudo_neg['senti_scores']<1])
         pseudo_neg = pseudo_neg.iloc[:int(threshold * len(pseudo_neg)), :]  # get top n% of the rows
+        print(pseudo_neg[['comment','senti_scores']][pseudo_neg['senti_scores']<1])
         print("psuedo neg", pseudo_neg.shape[0])
         return self.train_features.loc[list(pseudo_neg.index)].copy()
 

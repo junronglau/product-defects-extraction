@@ -18,6 +18,7 @@ class CorexTrainer:
             anchor_strength=2
         )
 
+
     def evaluate(self, data, corpus):
         score_lst = metric_coherence_gensim(measure='c_v',
                                             top_n=10,
@@ -43,12 +44,14 @@ class CorexTrainer:
             topic_lst.append(topic_words)
         return np.array(topic_lst)
 
-    def get_top_documents(self, topics, df, conf=0.9):
+    def get_top_documents(self, topics, df, conf=0.9, labels=False):
         """
         Retrieves a set of documents evaluated by the trained topic model
         :param topics: indexes of topics to extract (0-based index)
         :param df: original dataframe to extract
         :param conf: percentage of documents to extract
+        :param n_docs: number of documents to extract
+        :param labels: Add the topic number to output df
         :return: Extracted dataframe from the topic model evaluation
         """
         top_docs = self.model.get_top_docs(n_docs=-1, sort_by="log_prob")  # log_prob output range: [-inf, 0]
@@ -58,7 +61,10 @@ class CorexTrainer:
             docs, probs = zip(*topic_docs)
             docs, probs = np.array(docs), np.array(probs)
             limit = np.quantile(probs, conf)
-            top_docs_df = pd.concat([top_docs_df, df.iloc[list(docs[probs > limit])]], ignore_index=True, sort=False)
+            filtered = df.iloc[list(docs[probs > limit])]
+            if labels:
+                filtered['defect_topic'] = topic_n
+            top_docs_df = pd.concat([top_docs_df, filtered], ignore_index=True, sort=False)
         top_docs_df.drop_duplicates(subset=['comment'], inplace=True)
         return top_docs_df
 

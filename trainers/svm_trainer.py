@@ -29,13 +29,34 @@ class SvmTrainer:
         acc = accuracy_score(predictions, test_labels)
         precision, recall, _, _ = precision_recall_fscore_support(predictions.astype(int), test_labels.astype(int), average='binary')
 
-        precision_lst, recall_lst, thresholds = precision_recall_curve(test_labels.astype(int), predictions.astype(int))
-        pyplot.plot(recall_lst, precision_lst, marker='.', label='Logistic')
-        pyplot.xlabel('Recall')
-        pyplot.ylabel('Precision')
-        pyplot.show()
-        print(precision_lst)
-        print(recall_lst)
+        print("predicting")
+        predictions_prob = self.model.predict_proba(test_features)[:, 1]
+        from sklearn.metrics import roc_curve
+        fpr, tpr, thresholds = roc_curve(test_labels.astype(int), predictions_prob.astype(int))
+        # # plot the roc curve for the model
+        # pyplot.plot(fpr, tpr)
+        # # axis labels
+        # pyplot.xlabel('False Positive Rate')
+        # pyplot.ylabel('True Positive Rate')
+        # pyplot.legend()
+        import sklearn.metrics as metrics
+        roc_auc = metrics.auc(fpr, tpr)
+        import matplotlib.pyplot as plt
+        plt.title('Receiver Operating Characteristic')
+        plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
+        plt.legend(loc = 'lower right')
+        plt.plot([0, 1], [0, 1],'r--')
+        plt.xlim([0, 1])
+        plt.ylim([0, 1])
+        plt.ylabel('True Positive Rate')
+        plt.xlabel('False Positive Rate')
+        plt.show()
+        #
+        # # show the plot
+        # pyplot.show()
+        import numpy as np
+        print(fpr)
+        print(tpr)
         print(thresholds)
 
         return {"accuracy": acc, "precision": precision, "recall": recall}

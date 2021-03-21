@@ -22,15 +22,15 @@ def defects_classifier():
         print("Missing or invalid arguments")
         exit(0)
 
-    print("Logging experiment name: {name}".format(name=config.experiment.experiment_name))
-    experiment = Experiment(
-        api_key=config.experiment.api_key,
-        project_name=config.experiment.project_name,
-        workspace=config.experiment.workspace
-    )
-    experiment.set_name(config.experiment.experiment_name)
-    params = config.defects_classifier.model
-    experiment.log_parameters(params)
+    # print("Logging experiment name: {name}".format(name=config.experiment.experiment_name))
+    # experiment = Experiment(
+    #     api_key=config.experiment.api_key,
+    #     project_name=config.experiment.project_name,
+    #     workspace=config.experiment.workspace
+    # )
+    # experiment.set_name(config.experiment.experiment_name)
+    # params = config.defects_classifier.model
+    # experiment.log_parameters(params)
 
     print('Creating the data loader...')
     data_loader = DataLoader(config)
@@ -61,11 +61,11 @@ def defects_classifier():
            for proto, score in protocol_scores.items()]
 
     # Log the rest of the experiment
-    experiment.log_metrics(overall_scores)
-
-    experiment.log_model(name=config.experiment.model_name,
-                         file_or_folder=config.defects_classifier.paths.save_model_path)
-
+    # experiment.log_metrics(overall_scores)
+    #
+    # experiment.log_model(name=config.experiment.model_name,
+    #                      file_or_folder=config.defects_classifier.paths.save_model_path)
+    #
 
 if __name__ == '__main__':
     defects_classifier()
