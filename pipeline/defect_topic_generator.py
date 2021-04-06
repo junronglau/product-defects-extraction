@@ -1,7 +1,5 @@
 """
-Topic model to get symptoms categories
-Select relevant topics and their top n keywords
-Filter for these keywords to extract defects
+potentially can be deleted
 """
 from pathlib import Path
 import sys

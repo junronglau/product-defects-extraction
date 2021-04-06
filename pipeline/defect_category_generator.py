@@ -44,7 +44,7 @@ def generate_categories():
     preprocessor.prepare_data()
 
     print('Loading and evaluating the Model...')
-    model = CorexModel(config, preprocessor, seed=False)
+    model = CorexModel(config.defects_summarizer, preprocessor, seed=False)
     trainer = CorexTrainer(model, preprocessor.get_data())
     trainer.train()
     trainer.generate_topics()
@@ -52,6 +52,10 @@ def generate_categories():
                                             preprocessor.get_raw_corpus(),
                                             config.defects_summarizer.evaluate.extraction_quantile,
                                             labels=True)
+    top_docs_df.to_csv(config.defects_summarizer.paths.save_data_path)
+
+    print('Saving the trained topic model...')
+    model.save()
 
     print('Preprocessing the summarizer...')
     summary_preprocessor = TextRankPreprocessor(top_docs_df, n_docs=config.defects_summarizer.evaluate.n_docs)
@@ -61,6 +65,7 @@ def generate_categories():
     summary_model = TextRankModel(config)
     summary_trainer = TextRankTrainer(summary_model, summary_preprocessor)
     avg_prec, avg_recall, avg_f1 = summary_trainer.train_and_evaluate(test_data)
+
 
     # Log the rest of the experiment
     metrics = {"precision": avg_prec,

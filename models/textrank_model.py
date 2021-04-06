@@ -4,7 +4,7 @@ import pickle
 
 class TextRankModel:
     def __init__(self, config, load=False):
-        self.model_path = config.defects_summarizer.paths.save_model_path
+        self.model_path = config.defects_summarizer.paths.save_summarizer_path
         if load:
             self.model = pickle.load(open(self.model_path, "rb"))
         else:

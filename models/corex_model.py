@@ -4,12 +4,12 @@ import pickle
 
 class CorexModel:
     def __init__(self, config, preprocessor, load=False, seed=True):
-        self.model_path = config.labels_generator.paths.save_model_path
+        self.model_path = config.paths.save_model_path
         if load:
             self.model = pickle.load(open(self.model_path, "rb"))
         else:
-            self.model = ct.Corex(n_hidden=config.labels_generator.model.num_topics,
-                                  seed=config.labels_generator.model.random_state)
+            self.model = ct.Corex(n_hidden=config.model.num_topics,
+                                  seed=config.model.random_state)
 
         self.vocab = preprocessor.vocab
         self.seed_topics = None

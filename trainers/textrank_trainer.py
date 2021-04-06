@@ -5,7 +5,7 @@ class TextRankTrainer:
     def __init__(self, model, preprocessor):
         self.model = model.model
         self.preprocessor = preprocessor
-        self.num_sentences = 3
+        self.num_sentences = 2
         self.scorer = rouge_scorer.RougeScorer(['rouge1'], use_stemmer=True)
 
     def train_and_evaluate(self, test_data):
@@ -17,6 +17,7 @@ class TextRankTrainer:
             text_summary = ""
             for sentence in summary:
                 text_summary += str(sentence)
+
             scores = self.scorer.score(text_summary, test_data[test_data['topic'] == topic]['text'].iloc[-1])
             print(f"==={topic}===\n{text_summary}\nscores:{scores}")
             avg_prec += scores['rouge1'].precision

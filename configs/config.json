@@ -3,8 +3,8 @@
     "api_key" : "GumcB0S2230qAD8whgeRPjGdL",
     "project_name" : "product-defects-extraction",
     "workspace" : "junronglau",
-    "experiment_name": "[Defects summarizer] text rank method",
-    "model_name": "text rank"
+    "experiment_name": "[Defects summarizer] Textrank summarizer method",
+    "model_name": "Textrank"
   },
   "labels_generator" : {
     "paths": {
@@ -52,8 +52,15 @@
   "defects_summarizer": {
     "paths": {
       "base_data_path": "data/uc3/defects_classifier/generated_defects.csv",
-      "save_model_path": "data/uc3/defects_summarizer/textrank_summarizer.pkl",
-      "summary_label_path": "data/uc3/defects_summarizer/summary_labels.csv"
+      "save_summarizer_path": "data/uc3/defects_summarizer/textrank_summarizer.pkl",
+      "save_model_path": "data/uc3/defects_summarizer/corex_model.pkl",
+      "summary_label_path": "data/uc3/defects_summarizer/summary_labels.csv",
+      "save_data_path": "data/uc3/defects_summarizer/generated_data_topics.csv"
+    },
+    "model": {
+      "iterations" : 10,
+      "num_topics" : 10,
+      "random_state" : 0
     },
     "evaluate": {
       "extract_topics": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],

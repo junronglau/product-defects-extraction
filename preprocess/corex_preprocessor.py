@@ -38,15 +38,16 @@ class CorexPreprocessor(BasePreprocessor):
                 use_idf=False,
                 sublinear_tf=False
             )
+
         self.data = self.vectorizer.fit_transform(self.df['cleaned_text'])
         self.seed_topics = self.load_seeded_topics()
         self.vocab = self.vectorizer.get_feature_names()
 
     def load_seeded_topics(self):
-        with open(self.seed_topics_path) as f:
-            seed_topics_lst = json.load(f)
-        seed_topics_dct = [[word for word in st] for t_id, (t_name, st) in enumerate(seed_topics_lst.items())]
-        return seed_topics_dct
+            with open(self.seed_topics_path) as f:
+                seed_topics_lst = json.load(f)
+            seed_topics_dct = [[word for word in st] for t_id, (t_name, st) in enumerate(seed_topics_lst.items())]
+            return seed_topics_dct
 
     def get_data(self):
         return self.data
