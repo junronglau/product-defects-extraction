@@ -37,3 +37,32 @@ defects_classification:
   - path: data/uc3/defects_classifier/2step_classifier.pkl
     md5: cf7fe5cd717a3cfe2d0805d81b6abf82
     size: 3455950
+defects_summarization:
+  cmd: python pipeline/defect_category_generator.py
+  deps:
+  - path: data/uc3/defects_classifier/generated_defects.csv
+    md5: 1bebd0d34e2d62c340dfb0c01fc3edc7
+    size: 59034937
+  - path: data/uc3/defects_summarizer/summary_labels.csv
+    md5: 2d5b06af9f6626e841e10ce4991ea78c
+    size: 513
+  - path: pipeline/defects_generator.py
+    md5: 940866ff0c9dcd8f7613c07edf17d56e
+    size: 1316
+  outs:
+  - path: data/uc3/defects_summarizer/textrank_summarizer.pkl
+    md5: 57d8f96abc51397b36ca2c36d7864888
+    size: 119
+defects_generation:
+  cmd: python pipeline/defects_generator.py
+  deps:
+  - path: data/uc3/defects_classifier/2step_classifier.pkl
+    md5: cf7fe5cd717a3cfe2d0805d81b6abf82
+    size: 3455950
+  - path: pipeline/defects_classifier.py
+    md5: 4cd390d4ff73b5331ca2b1c380c85833
+    size: 2543
+  outs:
+  - path: data/uc3/defects_classifier/generated_defects.csv
+    md5: 30cd5ef78ea8c6675a3c83ed4eba5628
+    size: 67880155

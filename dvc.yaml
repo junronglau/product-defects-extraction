@@ -20,3 +20,18 @@ stages:
     - pipeline/defects_classifier.py
     outs:
     - data/uc3/defects_classifier/2step_classifier.pkl
+  defects_summarization:
+    cmd: python pipeline/defect_category_generator.py
+    deps:
+    - data/uc3/defects_classifier/generated_defects.csv
+    - data/uc3/defects_summarizer/summary_labels.csv
+    - pipeline/defects_generator.py
+    outs:
+    - data/uc3/defects_summarizer/textrank_summarizer.pkl
+  defects_generation:
+    cmd: python pipeline/defects_generator.py
+    deps:
+    - data/uc3/defects_classifier/2step_classifier.pkl
+    - pipeline/defects_classifier.py
+    outs:
+    - data/uc3/defects_classifier/generated_defects.csv
