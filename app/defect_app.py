@@ -60,7 +60,7 @@ def app():
     st.write('')
     with st.beta_container():
 
-        text_input = st.text_input(label="Input your review")
+        text_input = st.text_area(label="Input your review")
         num_topics = st.number_input("Number of candidate topics",1, 10)
 
         if st.button('Extract defects'):
