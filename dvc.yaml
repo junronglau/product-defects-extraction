@@ -27,7 +27,7 @@ stages:
     - data/uc3/defects_summarizer/summary_labels.csv
     - pipeline/defects_generator.py
     outs:
-    - data/uc3/defects_summarizer/textrank_summarizer.pkl
+    - data/uc3/defects_summarizer/corex_model.pkl
   defects_generation:
     cmd: python pipeline/defects_generator.py
     deps:
